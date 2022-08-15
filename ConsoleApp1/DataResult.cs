@@ -9,7 +9,7 @@ namespace ConsoleApp1
     public class DataResult
     {
         public List<Bank> data { get; set; }
-        public string message { get; set; }
         public bool success { get; set; }
+        public string message { get; set; }
     }
 }
