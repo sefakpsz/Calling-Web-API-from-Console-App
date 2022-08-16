@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 
-namespace ConsoleApp1;
+namespace CallingWebAPIViaHttpClient;
 class Program
 {
     public static void Main(string[] args)
