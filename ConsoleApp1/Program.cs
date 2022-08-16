@@ -8,8 +8,8 @@ class Program
         using HttpClient client = new HttpClient();
         Console.WriteLine("Calling WebAPI...");
 
-
         var responseTask = client.GetAsync("https://localhost:44348/api/Bank/GetAllBankList");
+
         responseTask.Wait();
         if (responseTask.IsCompleted)
         {
@@ -20,11 +20,9 @@ class Program
                 messageTask.Wait();
                 //string jsonString = JsonConvert.SerializeObject(messageTask.Result);
 
-                var banks = JsonConvert.DeserializeObject<DataResult>(messageTask.Result);
+                var dataResultObject = JsonConvert.DeserializeObject<DataResult>(messageTask.Result);
 
-
-
-                foreach (var item in banks.data)
+                foreach (var item in dataResultObject.data)
                 {
                     Bank bank = new();
                     Console.WriteLine("Bank Id: " + item.bankId);
@@ -36,11 +34,11 @@ class Program
                     bank.status = item.status;
                 }
 
-                if (banks.message != null)
+                if (dataResultObject.message != null)
                 {
-                    Console.WriteLine("Bank Message: " + banks.message);
+                    Console.WriteLine("Bank Message: " + dataResultObject.message);
                 }
-                Console.WriteLine("Bank Success Status: " + banks.success);
+                Console.WriteLine("Bank Success Status: " + dataResultObject.success);
             }
         }
     }
